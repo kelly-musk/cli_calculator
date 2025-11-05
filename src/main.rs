@@ -1,5 +1,3 @@
-// use ariadne::Line;
-// use chumsky::error;
 use clap::{Parser, Subcommand};
 use std::{io::{self, BufRead, Write}, process};
 
@@ -32,7 +30,7 @@ pub fn main() {
     let calculator = CliCalculator::parse();
 
     let operations = calculator.operations.unwrap_or_else(|| {
-        CliCalculator::parse_from(["Clac", "--help"]);
+        CliCalculator::parse_from(["Calculator", "--help"]);
         std::process::exit(0)
     });
 
@@ -75,6 +73,7 @@ fn run_repl(){
             }
             None => break,
         };
+        println!("{}", input);
         if input.is_empty(){
             continue;
         }

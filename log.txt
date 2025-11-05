@@ -1,0 +1,5 @@
+Welcom my calculator app built with repl crate
+Name of author is kelly Musk
+commands guide through this app are exit, add, sub, div
+> 38
+> Goodbye!
