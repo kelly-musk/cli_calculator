@@ -734,6 +734,7 @@ dependencies = [
  "copypasta",
  "eframe",
  "egui",
+ "once_cell",
 ]
 
 [[package]]

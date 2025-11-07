@@ -1,10 +1,25 @@
+// use chumsky::combinator::Lazy;
 use clap::{Parser, Subcommand};
+// use egui::{epaint::tessellator::path, mutex::Mutex, util::History};
 use std::{io::{self, BufRead, Write}, process};
+
+// static HISTORY: Lazy<Mutex<History>> = Lazy::new(||
+//     let path = "history.txt";
+//     let vec = load_history_from_file(path).unwrap_or_default();
+//     Mutex::new(HISTORY {vec, path.to_string()})
+// );
+
+
+// struct History{
+//     vec: Vec<f64>,
+//     path: String
+// }
 
 // calculator info
 #[derive(Debug, Parser)]
 #[command(name = "calculator")]
 #[command(about = "A fast and simple calculator ")]
+#[command(author = "Kelly Musk")]
 pub struct CliCalculator {
     #[command(subcommand)]
     operations: Option<Commands>,
@@ -26,7 +41,7 @@ pub enum Commands {
     #[command(name = "div")]
     Div { a: f64, b: f64 },
 }
-pub fn main() {
+fn main() {
     let calculator = CliCalculator::parse();
 
     let operations = calculator.operations.unwrap_or_else(|| {
@@ -84,17 +99,17 @@ fn run_repl(){
     
         let parts: Vec<&str> = input.split_whitespace().collect();
         if parts.len() != 3 {
-            eprintln!("usage; <cmd> <num1> <num3>");
+            eprintln!("usage; <cmd> <num1> <num2>");
             continue;
         }
-        let cmd = parts[0];
-        let a = match parts[1].parse::<f64>() {
-            Ok(n) => n,
-            Err(_) => {
-                eprintln!("Invalid number {}", parts[1]);
-                continue;
-            }
-        };
+     let cmd = parts[0];
+     let a = match parts[1].parse::<f64>() {
+         Ok(n) => n,
+         Err(_) => {
+            eprintln!("Invalid number {}", parts[1]);
+            continue;
+         }
+     };
 
         let b = match parts[2].parse::<f64>() {
             Ok(n) => n,
